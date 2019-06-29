@@ -11,11 +11,23 @@ public class Calculator {
         }
         else if(numbers.length()==1)
         {
-            return Integer.parseInt(numbers);
+            return convertToInt(numbers);
         }
         else
         {
-            return Integer.parseInt(table[0])+Integer.parseInt(table[1]);
+            return getSum(table);
         }
+    }
+    private int getSum(String[] numbers)//Getting sum of inputs values
+    {
+        int sum = 0;
+        for (String number : numbers) {
+            sum += convertToInt(number);
+        }
+        return sum;
+    }
+    private int convertToInt(String number)//Converting String to Int
+    {
+        return Integer.parseInt(number);
     }
 }

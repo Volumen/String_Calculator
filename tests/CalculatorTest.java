@@ -31,4 +31,11 @@ class CalculatorTest {
     {
         assertEquals(calculator.Add("41,111"),152);
     }
+
+    @Test
+    public void testUnknownAmountOfValues()//Step 2 - testing unknown amount of values
+    {
+        assertEquals(calculator.Add("3,7,1"),11);
+        assertEquals(calculator.Add("2,3,4,5,1,2,3"),20);
+    }
 }
