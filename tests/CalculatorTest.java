@@ -2,6 +2,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CalculatorTest {
 
@@ -49,5 +50,19 @@ class CalculatorTest {
     public void testSpecifiedDelimiter()//Step 4 - testing specified delimiter
     {
         assertEquals(calculator.Add("//&\n4&3&22"),29);
+    }
+
+    @Test
+    public void testNegativiesValues() //Step 5 - testing an exception
+    {
+        try {
+
+            calculator.Add("//&\n4&-3&-22");
+        }
+        catch (RuntimeException e)
+        {
+            assertEquals("negatives not allowed: -3 -22", e.getMessage());
+        }
+
     }
 }
