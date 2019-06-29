@@ -44,4 +44,10 @@ class CalculatorTest {
     {
         assertEquals(calculator.Add("3\n4,3"),10);
     }
+
+    @Test
+    public void testSpecifiedDelimiter()//Step 4 - testing specified delimiter
+    {
+        assertEquals(calculator.Add("//&\n4&3&22"),29);
+    }
 }
