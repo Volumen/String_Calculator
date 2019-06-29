@@ -56,13 +56,17 @@ class CalculatorTest {
     public void testNegativiesValues() //Step 5 - testing an exception
     {
         try {
-
             calculator.Add("//&\n4&-3&-22");
         }
         catch (RuntimeException e)
         {
             assertEquals("negatives not allowed: -3 -22", e.getMessage());
         }
+    }
 
+    @Test
+    public void testGreaterNumberThan1000() //Step 6 - testing values bigger than 1000
+    {
+        assertEquals(1149, calculator.Add("//;\n3;46;1001;1000;100;1240"));
     }
 }
