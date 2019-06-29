@@ -2,8 +2,8 @@ public class Calculator {
 
     public int Add(String numbers)
     {
-        //Splitting string to two pieces
-        String[] table = numbers.split(",");
+        //Splitting string for pieces separated by delimiters
+        String[] table = numbers.split("[,\n]");
         //Checking input string
         if(numbers.isEmpty())
         {

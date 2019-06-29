@@ -38,4 +38,10 @@ class CalculatorTest {
         assertEquals(calculator.Add("3,7,1"),11);
         assertEquals(calculator.Add("2,3,4,5,1,2,3"),20);
     }
+
+    @Test
+    public void testDelimiters()//Step 3 - testing new delimiter
+    {
+        assertEquals(calculator.Add("3\n4,3"),10);
+    }
 }
