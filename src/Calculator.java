@@ -1,9 +1,14 @@
 public class Calculator {
-
+    private int counter=0;
     public int Add(String numbers) {
+        counter++; //one more invoked added one values to counter
+
+        String numbersWithoutDelimiter;
+        int delimiterNumber;
         String delimiter = "[,\n]";
         //Splitting string for pieces separated by delimiters
         String[] table = numbers.split(delimiter);
+        String[] tableOfNumbersWithoutDelimiter ;
         //Checking input string
         if (numbers.isEmpty()) {
             return 0;
@@ -14,14 +19,20 @@ public class Calculator {
         else {
             if (numbers.startsWith("//"))
             {
-                String numbersWithoutDelimiter;
-                int delimiterNumber = numbers.indexOf("//")+2; //+2 because delimiter is after "//"
-                delimiter = numbers.substring(delimiterNumber, delimiterNumber+1);//delimiter is equal to 2
+                if(numbers.startsWith("//["))
+                {
+                    delimiterNumber = numbers.indexOf("//[")+3;//becaue delimiter is after "//["
+                    delimiter = numbers.substring(delimiterNumber, numbers.indexOf("]"));
+                }
+                else {
+                    delimiterNumber = numbers.indexOf("//") + 2; //+2 because delimiter is after "//"
+                    delimiter = numbers.substring(delimiterNumber, delimiterNumber + 1);//delimiter is equal to 2
+                }
                 numbersWithoutDelimiter = numbers.substring(numbers.indexOf("\n")+1);//numbers after without dilimiter
-                String[] tableOfNumbersWithoutDelimiter = numbersWithoutDelimiter.split(delimiter); //Splitting string for pieces separated by delimiters
+                tableOfNumbersWithoutDelimiter =numbersWithoutDelimiter.split(delimiter); //Splitting string for pieces separated by delimiters
                 return getSum(tableOfNumbersWithoutDelimiter);
             }
-            else
+                       else
             {
                 return getSum(table);
             }
@@ -55,5 +66,9 @@ public class Calculator {
     private int convertToInt(String number)//Converting String to Int
     {
         return Integer.parseInt(number);
+    }
+    public int GetCalledCount()
+    {
+        return counter;
     }
 }

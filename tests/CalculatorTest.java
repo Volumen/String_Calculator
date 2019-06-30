@@ -1,15 +1,17 @@
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CalculatorTest {
 
-    private Calculator calculator;
+    private static Calculator calculator;
 
-    @BeforeEach //befor each test is generated new object (calculator)
-    public void init()
+    @BeforeAll() //befor tests is generated new obcject
+    public static void setUp()
     {
         calculator = new Calculator();
     }
@@ -68,5 +70,16 @@ class CalculatorTest {
     public void testGreaterNumberThan1000() //Step 6 - testing values bigger than 1000
     {
         assertEquals(1149, calculator.Add("//;\n3;46;1001;1000;100;1240"));
+    }
+
+    @Test
+    public void testDifferentLengthOfDelimiter()//Step 7 - testing different length of delimiter
+    {
+        assertEquals(calculator.Add("//[!!!!]\n4!!!!3!!!!22"),29);
+    }
+    @AfterAll
+    public static void testToVerifyHowManyTimesAddWasInvoked()//Testing whether the "Add" method is called the right number of times
+    {
+        assertEquals(calculator.GetCalledCount(),10);
     }
 }
