@@ -10,26 +10,36 @@ public class Calculator {
         String[] table = numbers.split(delimiter);
         String[] tableOfNumbersWithoutDelimiter ;
         //Checking input string
+        //if input string is equal to 0
         if (numbers.isEmpty()) {
             return 0;
         }
+        //if input string is equal to 1
         else if (numbers.length() == 1) {
             return convertToInt(numbers);
         }
+        //Checking if input string is longer than 1
         else {
             if (numbers.startsWith("//"))
             {
                 if(numbers.startsWith("//["))
                 {
-                    delimiterNumber = numbers.indexOf("//[")+3;//becaue delimiter is after "//["
+                    delimiterNumber = numbers.indexOf("//[") + 3;//becaue delimiter is after "//["
                     delimiter = numbers.substring(delimiterNumber, numbers.indexOf("]"));
+                    if(numbers.contains("]["))
+                    {
+                        delimiter = delimiter+ "|" + numbers.substring(numbers.indexOf("][")+2,numbers.indexOf("\n")-1);//addind second delimiter
+                    }
+                    numbersWithoutDelimiter = numbers.substring(numbers.indexOf("\n")+1);//numbers after without dilimiter
+                    tableOfNumbersWithoutDelimiter =numbersWithoutDelimiter.split(delimiter); //Splitting string for pieces separated by delimiters
                 }
                 else {
                     delimiterNumber = numbers.indexOf("//") + 2; //+2 because delimiter is after "//"
                     delimiter = numbers.substring(delimiterNumber, delimiterNumber + 1);//delimiter is equal to 2
+                    numbersWithoutDelimiter = numbers.substring(numbers.indexOf("\n")+1);//numbers after without dilimiter
+                    tableOfNumbersWithoutDelimiter =numbersWithoutDelimiter.split(delimiter); //Splitting string for pieces separated by delimiters
                 }
-                numbersWithoutDelimiter = numbers.substring(numbers.indexOf("\n")+1);//numbers after without dilimiter
-                tableOfNumbersWithoutDelimiter =numbersWithoutDelimiter.split(delimiter); //Splitting string for pieces separated by delimiters
+
                 return getSum(tableOfNumbersWithoutDelimiter);
             }
                        else

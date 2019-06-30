@@ -80,6 +80,12 @@ class CalculatorTest {
     @AfterAll
     public static void testToVerifyHowManyTimesAddWasInvoked()//Testing whether the "Add" method is called the right number of times
     {
-        assertEquals(calculator.GetCalledCount(),10);
+        assertEquals(calculator.GetCalledCount(),11);
+    }
+
+    @Test
+    public void testDifferentTypeOfDelimiter()//Step 8 - testing different type of delimiter
+    {
+        assertEquals(calculator.Add("//[;][']\n4;3;22'3"),32);
     }
 }
