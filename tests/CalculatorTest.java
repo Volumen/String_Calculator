@@ -1,5 +1,3 @@
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -77,15 +75,21 @@ class CalculatorTest {
     {
         assertEquals(calculator.Add("//[!!!!]\n4!!!!3!!!!22"),29);
     }
-    @AfterAll
-    public static void testToVerifyHowManyTimesAddWasInvoked()//Testing whether the "Add" method is called the right number of times
-    {
-        assertEquals(calculator.GetCalledCount(),11);
-    }
 
     @Test
     public void testDifferentTypeOfDelimiter()//Step 8 - testing different type of delimiter
     {
-        assertEquals(calculator.Add("//[;][']\n4;3;22'3"),32);
+        assertEquals(calculator.Add("//[;][']\n4;3;22'3'1"),33);
     }
+    @AfterAll
+    public static void testToVerifyHowManyTimesAddWasInvoked()//Testing whether the "Add" method is called the right number of times
+    {
+        assertEquals(calculator.GetCalledCount(),12);
+    }
+    @Test
+    public void testDifferentTypeAndLenghtOfDelimiter()//Step 9 - testing different type of delimiter and different lenght
+    {
+        assertEquals(calculator.Add("//[;;]['][!!!!][//]\n4;;3!!!!22'3//1"),33);
+    }
+
 }

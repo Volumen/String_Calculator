@@ -1,8 +1,8 @@
 public class Calculator {
     private int counter=0;
+
     public int Add(String numbers) {
         counter++; //one more invoked added one values to counter
-
         String numbersWithoutDelimiter;
         int delimiterNumber;
         String delimiter = "[,\n]";
@@ -28,7 +28,20 @@ public class Calculator {
                     delimiter = numbers.substring(delimiterNumber, numbers.indexOf("]"));
                     if(numbers.contains("]["))
                     {
-                        delimiter = delimiter+ "|" + numbers.substring(numbers.indexOf("][")+2,numbers.indexOf("\n")-1);//addind second delimiter
+                        //getDelimiters(numbers);
+                        int[] tableOfDecimiters= new int[10];
+                        int j=0;
+                        for(int i =0; i<numbers.length();i++)
+                        {
+                            //if ']' appears, his number is saved, because of it, we now where are adding ne decimiters
+                             if(numbers.charAt(i)==']') {
+                                tableOfDecimiters[j] = i;
+                                j++;
+                            }
+                        }
+                        for (int k =1;k<j;k++) {
+                            delimiter += "|" + numbers.substring(tableOfDecimiters[k - 1] + 2, tableOfDecimiters[k]);//addind delimiters
+                        }
                     }
                     numbersWithoutDelimiter = numbers.substring(numbers.indexOf("\n")+1);//numbers after without dilimiter
                     tableOfNumbersWithoutDelimiter =numbersWithoutDelimiter.split(delimiter); //Splitting string for pieces separated by delimiters
